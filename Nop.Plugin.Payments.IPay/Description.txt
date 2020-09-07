@@ -1,0 +1,8 @@
+Group: Payment methods
+FriendlyName: Credit Card
+SystemName: Payments.IPay
+Version: 1.18
+SupportedVersions: 3.20
+Author: DFass Solutions
+DisplayOrder: 1
+FileName: Nop.Plugin.Payments.IPay.dll

@@ -1,0 +1,193 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Payments.Eigen.Models.PaymentInfoModel
+@using Nop.Web.Framework;
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.CardholderName, false):
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                @Html.TextBoxFor(model => model.CardholderName, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.CardholderName)
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.CardNumber, false):
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                @Html.TextBoxFor(model => model.CardNumber, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off", maxlength = 22 })
+                @Html.ValidationMessageFor(model => model.CardNumber)
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.ExpireMonth, false): 
+                @Html.DropDownListFor(model => model.ExpireMonth, Model.ExpireMonths)
+                /
+                @Html.DropDownListFor(model => model.ExpireYear, Model.ExpireYears)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.CardCode, false):
+            </div>
+            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                @Html.TextBoxFor(model => model.CardCode, new { @class = "fieldckt", style = "Width: 60px;", autocomplete = "off", maxlength = 4 })
+                @Html.ValidationMessageFor(model => model.CardCode)
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <div class="text_rel_check2 fieldckt">
+                    @T("payment.cvv.description")                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.Email, false):
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                @Html.TextBoxFor(model => model.Email, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off"})
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                        <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.PhoneNumber, false):
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off"})
+                        @Html.ValidationMessageFor(model => model.PhoneNumber)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <div class="text_rel_check4">
+                    @Html.LabelFor(model => model.subscribeYN)
+                    @Html.CheckBoxFor(model => model.subscribeYN)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                @Html.NopLabelFor(model => model.Address1, false):
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                @Html.TextBoxFor(model => model.Address1, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off"})
+                @Html.ValidationMessageFor(model => model.Address1)
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.City, false):
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                        @Html.TextBoxFor(model => model.City, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off"})
+                        @Html.ValidationMessageFor(model => model.City)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                @Html.NopLabelFor(model => model.StateProvinceId, false):
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                @Html.TextBoxFor(model => model.StateProvinceId, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off"})
+                @Html.ValidationMessageFor(model => model.StateProvinceId)
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                        <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.ZipPostalCode, false):
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        @Html.TextBoxFor(model => model.ZipPostalCode, new { @class = "fieldckt", style = "Width: 92px;", autocomplete = "off"})
+                        @Html.ValidationMessageFor(model => model.ZipPostalCode)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                <b>@T("eigen.country")</b>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                @*<select id="CountryId" name="CountryId">
+                    <option value="0">Select a option</option>
+                    @{
+                        foreach (var countries in Model.Countries)
+                        {
+                            <option value="@countries.NumericIsoCode">@countries.Name</option>
+                        }
+                    }
+                </select>*@
+                @*Html.TextBoxFor(model => model.CountryId, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off"})*@
+                @Html.DropDownListFor(model => model.Country, Model.Countries)
+                @Html.ValidationMessageFor(model => model.Country)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.Booking, false):
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                @Html.TextBoxFor(model => model.Booking, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.Booking)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                @Html.NopLabelFor(model => model.AeroplanNumber, false):
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                @Html.TextBoxFor(model => model.AeroplanNumber, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off"})
+                @Html.ValidationMessageFor(model => model.AeroplanNumber)
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 taright">
+                <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.NamePassport, false):
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                @Html.TextBoxFor(model => model.NamePassport, new { @class = "fieldckt", style = "Width: 165px;", autocomplete = "off"})
+                @Html.ValidationMessageFor(model => model.NamePassport)
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <font color="#FF0000">*</font>@Html.NopLabelFor(model => model.PassportNumber, false):
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        @Html.TextBoxFor(model => model.PassportNumber, new { @class = "fieldckt", style = "Width: 141px;", autocomplete = "off"})
+                        @Html.ValidationMessageFor(model => model.PassportNumber)
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model.IsDisplayVoucher)
+        { 
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    @Html.LabelFor(model => model.Voucher)
+                    <br /><b>@T("Payment.Voucher.Warning")</b>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    @Html.TextBoxFor(model => model.Voucher, new { @class = "fieldckt", style = "Width: 141px;", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.Voucher)
+                </div>
+            </div>
+        }
+    </div>
+</div>

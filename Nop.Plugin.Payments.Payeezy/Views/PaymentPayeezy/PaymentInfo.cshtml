@@ -1,0 +1,243 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Payments.Payeezy.Models.PaymentInfoModel
+@using Nop.Web.Framework;
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        Select a address or create a new
+    </div>
+    <div class="col-lg-6 label_payment">
+        @Html.DropDownListFor(model => model.ListAddress, Model.ListAddress, new { @class = "alg-l", @onchange = "getAddress(this.value)" })
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo1")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.CardholderName, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.CardholderName)
+    </div>
+    <div class="col-lg-2 label_payment">
+        
+    </div>
+    <div class="col-lg-2 label_payment">
+        
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo2")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.CardNumber, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off", maxlength = 22 })
+        @Html.ValidationMessageFor(model => model.CardNumber)
+    </div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo3")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.DropDownListFor(model => model.ExpireMonth, Model.ExpireMonths, new { @class = "alg-l" })
+        <div class="alg-l valid">
+            /
+        </div>
+        @Html.DropDownListFor(model => model.ExpireYear, Model.ExpireYears, new { @class = "alg-l" })
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo4")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.CardCode, new { @class = "alg-l", style = "Width: 60px;", autocomplete = "off", maxlength = 4 })
+        @Html.ValidationMessageFor(model => model.CardCode)
+    </div>
+    <div class="col-lg-2 label_payment">
+
+    </div>
+    <div class="col-lg-2 label_payment">
+
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo5")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.Email, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo6")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.PhoneNumber)
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo7")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.Address1, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.Address1)
+    </div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo8")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.City, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.City)
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo9")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.StateProvinceId, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.StateProvinceId)
+    </div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo10")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.ZipPostalCode, new { @class = "alg-l", style = "Width: 92px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.ZipPostalCode)
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo11")
+    </div>
+    <div class="col-lg-2 label_payment">
+        <div id="zone_country_address_origin">
+            @Html.DropDownListFor(model => model.Countries, Model.Countries, new { @class = "alg-l" })
+        </div>
+        <div id="zone_country_address_select" style="display:none;">
+
+        </div>
+    </div>
+    <div class="col-lg-2 label_payment">
+
+    </div>
+    <div class="col-lg-2 label_payment">
+
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo12")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.Booking, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.Booking)
+    </div>
+    <div class="col-lg-2 label_payment">
+
+    </div>
+    <div class="col-lg-2 label_payment">
+
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2 label_payment"></div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo13")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.NamePassport, new { @class = "alg-l", style = "Width: 165px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.NamePassport)
+    </div>
+    <div class="col-lg-2 label_payment">
+        @T("paymentinfo14")
+    </div>
+    <div class="col-lg-2 label_payment">
+        @Html.TextBoxFor(model => model.PassportNumber, new { @class = "alg-l", style = "Width: 141px;", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.PassportNumber)
+    </div>
+    <div class="col-lg-2 label_payment"></div>
+</div>
+
+<script>
+    function getAddress(number)
+    {
+        if (number!=0)
+        {
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: '@Url.Action("GetAddress", "Common")',
+                contentType: "application/json; charset=utf-8",
+                data: { "numberOfAddress": number},
+                dataType: "json",
+                success: function (result) {
+                    //alert("Fine" + result.Email);
+                    document.getElementById("Email").value = result.hasOwnProperty("Email") ? result.Email : result;
+                    document.getElementById("PhoneNumber").value = result.hasOwnProperty("PhoneNumber") ? result.PhoneNumber : result;
+                    document.getElementById("Address1").value = result.hasOwnProperty("Address1") ? result.Address1 : result;
+                    document.getElementById("City").value = result.hasOwnProperty("City") ? result.City : result;
+                    document.getElementById("StateProvinceId").value = result.hasOwnProperty("State") ? result.State : result;
+                    document.getElementById("Booking").value = result.hasOwnProperty("Booking") ? result.Booking : result;
+                    document.getElementById("ZipPostalCode").value = result.hasOwnProperty("ZipPostalCode") ? result.ZipPostalCode : result;
+                    document.getElementById("NamePassport").value = result.hasOwnProperty("NamePassport") ? result.NamePassport : result;
+                    document.getElementById("PassportNumber").value = result.hasOwnProperty("PassportNumber") ? result.PassportNumber : result;
+                    //document.getElementById("PassportNumber").value = result.hasOwnProperty("PassportNumber") ? result.PassportNumber : result;
+                    
+                    //$('#zone_country_address_select').html('<input id="Countries" name="Countries">');
+                    document.getElementById("Countries").value = result.hasOwnProperty("CountryN") ? result.CountryN : result;
+
+                    //document.getElementById("zone_country_address_origin").style.visibility = "none";
+                    //document.getElementById("zone_country_address_select").style.visibility = "block";
+                },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to address.');
+                }
+            });
+        }
+        else
+        {
+            //document.getElementById("zone_country_address_origin").style.visibility = "block";
+            //document.getElementById("zone_country_address_select").style.visibility = "none";
+            document.getElementById("Email").value = "";
+            document.getElementById("PhoneNumber").value = "";
+            document.getElementById("Address1").value = "";
+            document.getElementById("City").value = "";
+            document.getElementById("StateProvinceId").value = "";
+            document.getElementById("Booking").value = "";
+            document.getElementById("ZipPostalCode").value = "";
+            document.getElementById("NamePassport").value = "";
+            document.getElementById("PassportNumber").value = "";
+            document.getElementById("Countries").value = "0";
+        }
+    }
+</script>
