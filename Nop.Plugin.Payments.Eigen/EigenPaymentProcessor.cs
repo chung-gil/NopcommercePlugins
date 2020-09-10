@@ -208,20 +208,6 @@ namespace Nop.Plugin.Payments.Eigen
                         responseCodes = GetResponseCodes(responseString);
                     }
                 }
-
-                //var req = (HttpWebRequest)WebRequest.Create(uriBuilder.Uri);
-
-                //using (var resp = (HttpWebResponse)req.GetResponse())
-                //{
-                //    using (var responseReader = new StreamReader(resp.GetResponseStream(), Encoding.Default))
-                //    {
-                //        if (responseReader != null)
-                //        {
-                //            string strRet = responseReader.ReadToEnd();
-                //            responseCodes = GetResponseCodes(strRet);
-                //        }
-                //    }
-                //}
             }
             catch(Exception ex)
             {
@@ -255,92 +241,6 @@ namespace Nop.Plugin.Payments.Eigen
                 result.ResponseCodes.Add(responseCode.Key, responseCode.Value);
                 //submission.ResponseCodes.Add(responseCode.Key, responseCode.Value);
             }
-            
-        //    var customer = _customerService.GetCustomerById(processPaymentRequest.CustomerId);
-
-            
-        //    var form = new NameValueCollection();
-        //    form.Add("x_login", _authorizeNetPaymentSettings.LoginId);
-        //    form.Add("x_tran_key", _authorizeNetPaymentSettings.TransactionKey);
-
-        //    //we should not send "x_test_request" parameter. otherwise, the transaction won't be logged in the sandbox
-        //    //if (_authorizeNetPaymentSettings.UseSandbox)
-        //    //    form.Add("x_test_request", "TRUE");
-        //    //else
-        //    //    form.Add("x_test_request", "FALSE");
-
-        //    form.Add("x_delim_data", "TRUE");
-        //    form.Add("x_delim_char", "|");
-        //    form.Add("x_encap_char", "");
-        //    form.Add("x_version", GetApiVersion());
-        //    form.Add("x_relay_response", "FALSE");
-        //    form.Add("x_method", "CC");
-        //    form.Add("x_currency_code", _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId).CurrencyCode);
-        //    if (_authorizeNetPaymentSettings.TransactMode == TransactMode.Authorize)
-        //        form.Add("x_type", "AUTH_ONLY");
-        //    else if (_authorizeNetPaymentSettings.TransactMode == TransactMode.AuthorizeAndCapture)
-        //        form.Add("x_type", "AUTH_CAPTURE");
-        //    else
-        //        throw new NopException("Not supported transaction mode");
-
-        //    var orderTotal = Math.Round(processPaymentRequest.OrderTotal, 2);
-        //    form.Add("x_amount", orderTotal.ToString("0.00", CultureInfo.InvariantCulture));
-        //    form.Add("x_card_num", processPaymentRequest.CreditCardNumber);
-        //    form.Add("x_exp_date", processPaymentRequest.CreditCardExpireMonth.ToString("D2") + processPaymentRequest.CreditCardExpireYear.ToString());
-        //    form.Add("x_card_code", processPaymentRequest.CreditCardCvv2);
-        //    form.Add("x_first_name", customer.BillingAddress.FirstName);
-        //    form.Add("x_last_name", customer.BillingAddress.LastName);
-        //    form.Add("x_email", customer.BillingAddress.Email);
-        //    if (!string.IsNullOrEmpty(customer.BillingAddress.Company))
-        //        form.Add("x_company", customer.BillingAddress.Company);
-        //    form.Add("x_address", customer.BillingAddress.Address1);
-        //    form.Add("x_city", customer.BillingAddress.City);
-        //    if (customer.BillingAddress.StateProvince != null)
-        //        form.Add("x_state", customer.BillingAddress.StateProvince.Abbreviation);
-        //    form.Add("x_zip", customer.BillingAddress.ZipPostalCode);
-        //    if (customer.BillingAddress.Country != null)
-        //        form.Add("x_country", customer.BillingAddress.Country.TwoLetterIsoCode);
-        //    //x_invoice_num is 20 chars maximum. hece we also pass x_description
-        //    form.Add("x_invoice_num", processPaymentRequest.OrderGuid.ToString().Substring(0, 20));
-        //    form.Add("x_description", string.Format("Full order #{0}", processPaymentRequest.OrderGuid));
-        //    form.Add("x_customer_ip", _webHelper.GetCurrentIpAddress());
-
-        //    string reply = null;
-        //    Byte[] responseData = webClient.UploadValues(GetAuthorizeNETUrl(), form);
-        //    reply = Encoding.ASCII.GetString(responseData);
-
-        //    if (!String.IsNullOrEmpty(reply))
-        //    {
-        //        string[] responseFields = reply.Split('|');
-        //        switch (responseFields[0])
-        //        {
-        //            case "1":
-        //                result.AuthorizationTransactionCode = string.Format("{0},{1}", responseFields[6], responseFields[4]);
-        //                result.AuthorizationTransactionResult = string.Format("Approved ({0}: {1})", responseFields[2], responseFields[3]);
-        //                result.AvsResult = responseFields[5];
-        //                //responseFields[38];
-        //                if (_authorizeNetPaymentSettings.TransactMode == TransactMode.Authorize)
-        //                {
-        //                    result.NewPaymentStatus = PaymentStatus.Authorized;
-        //                }
-        //                else
-        //                {
-        //                    result.NewPaymentStatus = PaymentStatus.Paid;
-        //                }
-        //                break;
-        //            case "2":
-        //                result.AddError(string.Format("Declined ({0}: {1})", responseFields[2], responseFields[3]));
-        //                break;
-        //            case "3":
-        //                result.AddError(string.Format("Error: {0}", reply));
-        //                break;
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        result.AddError("Authorize.NET unknown error");
-        //    }
 
             return result;
         }
@@ -361,10 +261,6 @@ namespace Nop.Plugin.Payments.Eigen
         /// <returns>Additional handling fee</returns>
         public decimal GetAdditionalHandlingFee(IList<ShoppingCartItem> cart)
         {
-            
-            //var result = this.CalculateAdditionalFee(_orderTotalCalculationService, cart,
-            //    _eigenPaymentSettings.AdditionalFee, _eigenPaymentSettings.AdditionalFeePercentage);
-            //return result;
             return 0;
         }
 
@@ -378,62 +274,6 @@ namespace Nop.Plugin.Payments.Eigen
             var result = new CapturePaymentResult();
             result.AddError("Capture method not supported");
             return result;
-
-        //    WebClient webClient = new WebClient();
-        //    NameValueCollection form = new NameValueCollection();
-        //    form.Add("x_login", _authorizeNetPaymentSettings.LoginId);
-        //    form.Add("x_tran_key", _authorizeNetPaymentSettings.TransactionKey);
-
-        //    //we should not send "x_test_request" parameter. otherwise, the transaction won't be logged in the sandbox
-        //    //if (_authorizeNetPaymentSettings.UseSandbox)
-        //    //    form.Add("x_test_request", "TRUE");
-        //    //else
-        //    //    form.Add("x_test_request", "FALSE");
-
-        //    form.Add("x_delim_data", "TRUE");
-        //    form.Add("x_delim_char", "|");
-        //    form.Add("x_encap_char", "");
-        //    form.Add("x_version", GetApiVersion());
-        //    form.Add("x_relay_response", "FALSE");
-        //    form.Add("x_method", "CC");
-        //    form.Add("x_currency_code", _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId).CurrencyCode);
-        //    form.Add("x_type", "PRIOR_AUTH_CAPTURE");
-
-        //    var orderTotal = Math.Round(capturePaymentRequest.Order.OrderTotal, 2);
-        //    form.Add("x_amount", orderTotal.ToString("0.00", CultureInfo.InvariantCulture));
-        //    string[] codes = capturePaymentRequest.Order.AuthorizationTransactionCode.Split(',');
-        //    //x_trans_id. When x_test_request (sandbox) is set to a positive response, 
-        //    //or when Test mode is enabled on the payment gateway, this value will be "0".
-        //    form.Add("x_trans_id", codes[0]);
-
-        //    string reply = null;
-        //    Byte[] responseData = webClient.UploadValues(GetAuthorizeNETUrl(), form);
-        //    reply = Encoding.ASCII.GetString(responseData);
-
-        //    if (!String.IsNullOrEmpty(reply))
-        //    {
-        //        string[] responseFields = reply.Split('|');
-        //        switch (responseFields[0])
-        //        {
-        //            case "1":
-        //                result.CaptureTransactionId = string.Format("{0},{1}", responseFields[6], responseFields[4]);
-        //                result.CaptureTransactionResult = string.Format("Approved ({0}: {1})", responseFields[2], responseFields[3]);
-        //                //result.AVSResult = responseFields[5];
-        //                //responseFields[38];
-        //                result.NewPaymentStatus = PaymentStatus.Paid;
-        //                break;
-        //            case "2":
-        //                result.AddError(string.Format("Declined ({0}: {1})", responseFields[2], responseFields[3]));
-        //                break;
-        //            case "3":
-        //                result.AddError(string.Format("Error: {0}", reply));
-        //                break;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        result.AddError("Authorize.NET unknown error");
-        //    }            
         }
 
         /// <summary>
@@ -444,67 +284,6 @@ namespace Nop.Plugin.Payments.Eigen
         public RefundPaymentResult Refund(RefundPaymentRequest refundPaymentRequest)
         {
             var result = new RefundPaymentResult();
-
-        //    WebClient webClient = new WebClient();
-        //    NameValueCollection form = new NameValueCollection();
-        //    form.Add("x_login", _authorizeNetPaymentSettings.LoginId);
-        //    form.Add("x_tran_key", _authorizeNetPaymentSettings.TransactionKey);
-
-        //    form.Add("x_delim_data", "TRUE");
-        //    form.Add("x_delim_char", "|");
-        //    form.Add("x_encap_char", "");
-        //    form.Add("x_version", GetApiVersion());
-        //    form.Add("x_relay_response", "FALSE");
-
-        //    form.Add("x_method", "CC");
-        //    form.Add("x_currency_code", _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId).CurrencyCode);
-
-        //    string[] codes = refundPaymentRequest.Order.CaptureTransactionId == null ?
-        //        refundPaymentRequest.Order.AuthorizationTransactionCode.Split(',') : refundPaymentRequest.Order.CaptureTransactionId.Split(',');
-        //    //x_trans_id. When x_test_request (sandbox) is set to a positive response, 
-        //    //or when Test mode is enabled on the payment gateway, this value will be "0".
-        //    form.Add("x_trans_id", codes[0]);
-
-        //    string maskedCreditCardNumberDecrypted = _encryptionService.DecryptText(refundPaymentRequest.Order.MaskedCreditCardNumber);
-        //    if (String.IsNullOrEmpty(maskedCreditCardNumberDecrypted) || maskedCreditCardNumberDecrypted.Length < 4)
-        //    {
-        //        result.AddError("Last four digits of Credit Card Not Available");
-        //        return result;
-        //    }
-        //    var lastFourDigitsCardNumber = maskedCreditCardNumberDecrypted.Substring(maskedCreditCardNumberDecrypted.Length - 4);
-        //    form.Add("x_card_num", lastFourDigitsCardNumber); // only last four digits are required for doing a credit
-        //    form.Add("x_amount", refundPaymentRequest.AmountToRefund.ToString("0.00", CultureInfo.InvariantCulture));
-        //    //x_invoice_num is 20 chars maximum. hece we also pass x_description
-        //    form.Add("x_invoice_num", refundPaymentRequest.Order.OrderGuid.ToString().Substring(0, 20));
-        //    form.Add("x_description", string.Format("Full order #{0}", refundPaymentRequest.Order.OrderGuid));
-        //    form.Add("x_type", "CREDIT");
-
-        //    // Send Request to Authorize and Get Response
-        //    string reply = null;
-        //    Byte[] responseData = webClient.UploadValues(GetAuthorizeNETUrl(), form);
-        //    reply = Encoding.ASCII.GetString(responseData);
-
-        //    if (!String.IsNullOrEmpty(reply))
-        //    {
-        //        string[] responseFields = reply.Split('|');
-        //        switch (responseFields[0])
-        //        {
-        //            case "1":
-        //                var isOrderFullyRefunded = (refundPaymentRequest.AmountToRefund + refundPaymentRequest.Order.RefundedAmount == refundPaymentRequest.Order.OrderTotal);
-        //                result.NewPaymentStatus = isOrderFullyRefunded ? PaymentStatus.Refunded : PaymentStatus.PartiallyRefunded;
-        //                break;
-        //            case "2":
-        //                result.AddError(string.Format("Declined ({0}: {1})", responseFields[2], responseFields[3]));
-        //                break;
-        //            case "3":
-        //                result.AddError(string.Format("Error: {0}", reply));
-        //                break;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        result.AddError("Authorize.NET unknown error");
-        //    }
             result.AddError("Refund method not supported");
             return result;
         }
@@ -517,62 +296,7 @@ namespace Nop.Plugin.Payments.Eigen
         public VoidPaymentResult Void(VoidPaymentRequest voidPaymentRequest)
         {
             var result = new VoidPaymentResult();
-            result.AddError("Void method not supported");
-        //    WebClient webClient = new WebClient();
-        //    NameValueCollection form = new NameValueCollection();
-        //    form.Add("x_login", _authorizeNetPaymentSettings.LoginId);
-        //    form.Add("x_tran_key", _authorizeNetPaymentSettings.TransactionKey);
-
-        //    form.Add("x_delim_data", "TRUE");
-        //    form.Add("x_delim_char", "|");
-        //    form.Add("x_encap_char", "");
-        //    form.Add("x_version", GetApiVersion());
-        //    form.Add("x_relay_response", "FALSE");
-
-        //    form.Add("x_method", "CC");
-        //    form.Add("x_currency_code", _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId).CurrencyCode);
-
-        //    string[] codes = voidPaymentRequest.Order.CaptureTransactionId == null ?
-        //        voidPaymentRequest.Order.AuthorizationTransactionCode.Split(',') : voidPaymentRequest.Order.CaptureTransactionId.Split(',');
-        //    //x_trans_id. When x_test_request (sandbox) is set to a positive response, 
-        //    //or when Test mode is enabled on the payment gateway, this value will be "0".
-        //    form.Add("x_trans_id", codes[0]);
-
-        //    string maskedCreditCardNumberDecrypted = _encryptionService.DecryptText(voidPaymentRequest.Order.MaskedCreditCardNumber);
-        //    if (String.IsNullOrEmpty(maskedCreditCardNumberDecrypted) || maskedCreditCardNumberDecrypted.Length < 4)
-        //    {
-        //        result.AddError("Last four digits of Credit Card Not Available");
-        //        return result;
-        //    }
-        //    var lastFourDigitsCardNumber = maskedCreditCardNumberDecrypted.Substring(maskedCreditCardNumberDecrypted.Length - 4);
-        //    form.Add("x_card_num", lastFourDigitsCardNumber); // only last four digits are required for doing a credit            
-        //    form.Add("x_type", "VOID");
-
-        //    // Send Request to Authorize and Get Response
-        //    string reply = null;
-        //    Byte[] responseData = webClient.UploadValues(GetAuthorizeNETUrl(), form);
-        //    reply = Encoding.ASCII.GetString(responseData);
-
-        //    if (!String.IsNullOrEmpty(reply))
-        //    {
-        //        string[] responseFields = reply.Split('|');
-        //        switch (responseFields[0])
-        //        {
-        //            case "1":
-        //                result.NewPaymentStatus = PaymentStatus.Voided;
-        //                break;
-        //            case "2":
-        //                result.AddError(string.Format("Declined ({0}: {1})", responseFields[2], responseFields[3]));
-        //                break;
-        //            case "3":
-        //                result.AddError(string.Format("Error: {0}", reply));
-        //                break;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        result.AddError("Authorize.NET unknown error");
-        //    }
+            result.AddError("Void method not supported");       
 
             return result;
         }
@@ -586,125 +310,6 @@ namespace Nop.Plugin.Payments.Eigen
         {
             var result = new ProcessPaymentResult();
             result.AddError("Recurring payment not supported");
-        //    var authentication = PopulateMerchantAuthentication();
-        //    if (!processPaymentRequest.IsRecurringPayment)
-        //    {
-        //        var customer = _customerService.GetCustomerById(processPaymentRequest.CustomerId);
-
-        //        var subscription = new ARBSubscriptionType();
-        //        var creditCard = new net.authorize.api.CreditCardType();
-
-        //        subscription.name = processPaymentRequest.OrderGuid.ToString();
-
-        //        creditCard.cardNumber = processPaymentRequest.CreditCardNumber;
-        //        creditCard.expirationDate = processPaymentRequest.CreditCardExpireYear + "-" + processPaymentRequest.CreditCardExpireMonth; // required format for API is YYYY-MM
-        //        creditCard.cardCode = processPaymentRequest.CreditCardCvv2;
-
-        //        subscription.payment = new PaymentType();
-        //        subscription.payment.Item = creditCard;
-
-        //        subscription.billTo = new NameAndAddressType();
-        //        subscription.billTo.firstName = customer.BillingAddress.FirstName;
-        //        subscription.billTo.lastName = customer.BillingAddress.LastName;
-        //        subscription.billTo.address = customer.BillingAddress.Address1 + " " + customer.BillingAddress.Address2;
-        //        subscription.billTo.city = customer.BillingAddress.City;
-        //        if (customer.BillingAddress.StateProvince != null)
-        //        {
-        //            subscription.billTo.state = customer.BillingAddress.StateProvince.Abbreviation;
-        //        }
-        //        subscription.billTo.zip = customer.BillingAddress.ZipPostalCode;
-
-        //        if (customer.ShippingAddress != null)
-        //        {
-        //            subscription.shipTo = new NameAndAddressType();
-        //            subscription.shipTo.firstName = customer.ShippingAddress.FirstName;
-        //            subscription.shipTo.lastName = customer.ShippingAddress.LastName;
-        //            subscription.shipTo.address = customer.ShippingAddress.Address1 + " " + customer.ShippingAddress.Address2;
-        //            subscription.shipTo.city = customer.ShippingAddress.City;
-        //            if (customer.ShippingAddress.StateProvince != null)
-        //            {
-        //                subscription.shipTo.state = customer.ShippingAddress.StateProvince.Abbreviation;
-        //            }
-        //            subscription.shipTo.zip = customer.ShippingAddress.ZipPostalCode;
-
-        //        }
-
-        //        subscription.customer = new CustomerType();
-        //        subscription.customer.email = customer.BillingAddress.Email;
-        //        subscription.customer.phoneNumber = customer.BillingAddress.PhoneNumber;
-
-        //        subscription.order = new OrderType();
-        //        subscription.order.description = "Recurring payment";
-
-        //        // Create a subscription that is leng of specified occurrences and interval is amount of days ad runs
-
-        //        subscription.paymentSchedule = new PaymentScheduleType();
-        //        DateTime dtNow = DateTime.UtcNow;
-        //        subscription.paymentSchedule.startDate = new DateTime(dtNow.Year, dtNow.Month, dtNow.Day);
-        //        subscription.paymentSchedule.startDateSpecified = true;
-
-        //        subscription.paymentSchedule.totalOccurrences = Convert.ToInt16(processPaymentRequest.RecurringTotalCycles);
-        //        subscription.paymentSchedule.totalOccurrencesSpecified = true;
-
-        //        var orderTotal = Math.Round(processPaymentRequest.OrderTotal, 2);
-        //        subscription.amount = orderTotal;
-        //        subscription.amountSpecified = true;
-
-        //        // Interval can't be updated once a subscription is created.
-        //        subscription.paymentSchedule.interval = new PaymentScheduleTypeInterval();
-        //        switch (processPaymentRequest.RecurringCyclePeriod)
-        //        {
-        //            case RecurringProductCyclePeriod.Days:
-        //                subscription.paymentSchedule.interval.length = Convert.ToInt16(processPaymentRequest.RecurringCycleLength);
-        //                subscription.paymentSchedule.interval.unit = ARBSubscriptionUnitEnum.days;
-        //                break;
-        //            case RecurringProductCyclePeriod.Weeks:
-        //                subscription.paymentSchedule.interval.length = Convert.ToInt16(processPaymentRequest.RecurringCycleLength * 7);
-        //                subscription.paymentSchedule.interval.unit = ARBSubscriptionUnitEnum.days;
-        //                break;
-        //            case RecurringProductCyclePeriod.Months:
-        //                subscription.paymentSchedule.interval.length = Convert.ToInt16(processPaymentRequest.RecurringCycleLength);
-        //                subscription.paymentSchedule.interval.unit = ARBSubscriptionUnitEnum.months;
-        //                break;
-        //            case RecurringProductCyclePeriod.Years:
-        //                subscription.paymentSchedule.interval.length = Convert.ToInt16(processPaymentRequest.RecurringCycleLength * 12);
-        //                subscription.paymentSchedule.interval.unit = ARBSubscriptionUnitEnum.months;
-        //                break;
-        //            default:
-        //                throw new NopException("Not supported cycle period");
-        //        }
-
-        //        using (var webService = new net.authorize.api.Service())
-        //        {
-        //            if (_authorizeNetPaymentSettings.UseSandbox)
-        //                webService.Url = "https://apitest.authorize.net/soap/v1/Service.asmx";
-        //            else
-        //                webService.Url = "https://api.authorize.net/soap/v1/Service.asmx";
-
-        //            var response = webService.ARBCreateSubscription(authentication, subscription);
-
-        //            if (response.resultCode == MessageTypeEnum.Ok)
-        //            {
-        //                result.SubscriptionTransactionId = response.subscriptionId.ToString();
-        //                result.AuthorizationTransactionCode = response.resultCode.ToString();
-        //                result.AuthorizationTransactionResult = string.Format("Approved ({0}: {1})", response.resultCode.ToString(), response.subscriptionId.ToString());
-
-        //                if (_authorizeNetPaymentSettings.TransactMode == TransactMode.Authorize)
-        //                {
-        //                    result.NewPaymentStatus = PaymentStatus.Authorized;
-        //                }
-        //                else
-        //                {
-        //                    result.NewPaymentStatus = PaymentStatus.Paid;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                result.AddError(string.Format("Error processing recurring payment. {0}", GetErrors(response)));
-        //            }
-        //        }
-        //    }
-
             return result;
         }
 
@@ -715,30 +320,7 @@ namespace Nop.Plugin.Payments.Eigen
         /// <returns>Result</returns>
         public CancelRecurringPaymentResult CancelRecurringPayment(CancelRecurringPaymentRequest cancelPaymentRequest)
         {
-            var result = new CancelRecurringPaymentResult();
-        //    var authentication = PopulateMerchantAuthentication();
-        //    long subscriptionId = 0;
-        //    long.TryParse(cancelPaymentRequest.Order.SubscriptionTransactionId, out subscriptionId);
-
-
-        //    using (var webService = new net.authorize.api.Service())
-        //    {
-        //        if (_authorizeNetPaymentSettings.UseSandbox)
-        //            webService.Url = "https://apitest.authorize.net/soap/v1/Service.asmx";
-        //        else
-        //            webService.Url = "https://api.authorize.net/soap/v1/Service.asmx";
-
-        //        var response = webService.ARBCancelSubscription(authentication, subscriptionId);
-
-        //        if (response.resultCode == MessageTypeEnum.Ok)
-        //        {
-        //            //ok
-        //        }
-        //        else
-        //        {
-        //            result.AddError("Error cancelling subscription, please contact customer support. " + GetErrors(response));
-        //        }
-        //    }
+            var result = new CancelRecurringPaymentResult();        
             return result;
         }
 
