@@ -166,8 +166,6 @@ namespace Nop.Plugin.Payments.Eigen
             {
                 TerminalId = _eigenPaymentSettings.TerminalID,
                 MkeyPassword = _eigenPaymentSettings.HashPassword,
-                //TerminalId = "MRP5721629A",
-                //MkeyPassword = "dfass123!",
                 Track2 = track2String,
                 Amount = Convert.ToInt32(orderTotal * 100M),
                 SubmissionDate = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "Eastern Standard Time"),
